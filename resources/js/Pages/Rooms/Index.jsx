@@ -9,7 +9,7 @@ import { PlusIcon } from "lucide-react";
 import { DataTable } from "./table/data-table";
 import { columns } from "./table/columns";
 
-export default function Index({ auth, rooms, flash }) {
+export default function Index({ rooms, flash }) {
     // Displaying the flash messages
     flash.success &&
         toast.success("Room was deleted succesfully!");

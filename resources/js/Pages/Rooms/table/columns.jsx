@@ -1,4 +1,4 @@
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { Link, router } from "@inertiajs/react";
 
 import { Button } from "@/components/ui/button";
@@ -19,22 +19,123 @@ export const columns = [
     {
         accessorKey: "description",
         header: "Description",
+        cell: ({row}) => {
+            let description = row.original.description
+            description = description.split(' ').slice(0,10).join(' ') + "..."
+            return (
+                <span> {description} </span>
+            )
+        }
     },
     {
         accessorKey: "state",
-        header: "State",
+        header: ({ column }) => {
+            return (
+                <Button
+                    className="hover:bg-transparent px-0"
+                    variant="ghost"
+                    onClick={() => column.toggleSorting()}
+                >
+                    State
+                    {
+                        {
+                            asc: " (Ascending)",
+                            desc: " (Descending)",
+                        }[column.getIsSorted() ?? null]
+                    }
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
+        cell: ({ row }) => {
+            const state = row.original.state;
+            switch (state) {
+                case "not available":
+                    return (
+                        <span className="text-red-500 truncate"> Not available </span>
+                    );
+                case "available":
+                    return <span className="text-green-600"> Available </span>;
+                case "booked":
+                    return <span className="text-yellow-500"> Booked </span>;
+                default:
+                    "State";
+                    break;
+            }
+        },
     },
     {
         accessorKey: "type",
         header: "Type",
+        cell: ({ row }) => {
+            const type = row.original.type;
+
+            switch (type) {
+                case "studio":
+                    return <span> Studio </span>;
+                case "presidential":
+                    return <span> Presidential </span>;
+                case "double":
+                    return <span> Double </span>;
+                case "single":
+                    return <span> Single</span>;
+                default:
+                    "Type";
+                    break;
+            }
+        },
     },
     {
         accessorKey: "capacity",
-        header: "Capacity",
+        header: ({ column }) => {
+            return (
+                <Button
+                    className="hover:bg-transparent px-0 text-right"
+                    variant="ghost"
+                    onClick={() => column.toggleSorting()}
+                >
+                    Capacity
+                    {
+                        {
+                            asc: " (Ascending)",
+                            desc: " (Descending)",
+                        }[column.getIsSorted() ?? null]
+                    }
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
+        cell: ({ row }) => {
+            const capacity = row.original.capacity;
+
+            return <span className="text-right"> {capacity} </span>;
+        },
     },
     {
         accessorKey: "price",
-        header: "Price",
+        header: ({ column }) => {
+            return (
+                <Button
+                    className="hover:bg-transparent px-0 text-right"
+                    variant="ghost"
+                    onClick={() => column.toggleSorting()}
+                >
+                    Price
+                    {
+                        {
+                            asc: " (Ascending)",
+                            desc: " (Descending)",
+                        }[column.getIsSorted() ?? null]
+                    }
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
+        cell: ({ row }) => {
+            const price = row.original.price;
+
+            return <span className="text-right"> {price}€ </span>;
+        },
     },
     {
         id: "actions",

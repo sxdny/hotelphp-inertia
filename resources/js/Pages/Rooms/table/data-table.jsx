@@ -1,5 +1,6 @@
 import {
     flexRender,
+    getSortedRowModel,
     getCoreRowModel,
     useReactTable,
 } from "@tanstack/react-table";
@@ -12,19 +13,21 @@ import {
     TableHeader,
     TableRow,
 } from "@/Components/ui/table";
+import { useState } from "react";
 
 export function DataTable({ data, columns }) {
-    // console.log(data);
+    const [sorting, setSorting] = useState([]);
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
     });
-
-    console.log(
-        table.getCoreRowModel().rows[0].getVisibleCells()[0].column.columnDef
-    );
 
     return (
         <Table>
@@ -32,8 +35,15 @@ export function DataTable({ data, columns }) {
                 {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow key={headerGroup.id}>
                         {headerGroup.headers.map((header) => (
-                            <TableHead key={header.id}>
-                                {header.column.columnDef.header}
+                            <TableHead
+                                key={header.id}
+                            >
+                                <span>
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext()
+                                    )}
+                                </span>
                             </TableHead>
                         ))}
                     </TableRow>
@@ -47,7 +57,7 @@ export function DataTable({ data, columns }) {
                             data-state={row.getIsSelected() && "selected"}
                         >
                             {row.getVisibleCells().map((cell) => (
-                                <TableCell key={cell.id}>
+                                <TableCell className="text-sm" key={cell.id}>
                                     {flexRender(
                                         cell.column.columnDef.cell,
                                         cell.getContext()
