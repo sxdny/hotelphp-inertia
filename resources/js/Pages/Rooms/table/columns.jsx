@@ -15,17 +15,26 @@ export const columns = [
     {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => {
+            let roomId = row.original.id;
+            return (
+                <Link
+                    className="underline underline-offset-4"
+                    href={route("rooms.show", roomId)}
+                >
+                    {row.original.name}
+                </Link>
+            );
+        },
     },
     {
         accessorKey: "description",
         header: "Description",
-        cell: ({row}) => {
-            let description = row.original.description
-            description = description.split(' ').slice(0,10).join(' ') + "..."
-            return (
-                <span> {description} </span>
-            )
-        }
+        cell: ({ row }) => {
+            let description = row.original.description;
+            description = description.split(" ").slice(0, 10).join(" ") + "...";
+            return <span> {description} </span>;
+        },
     },
     {
         accessorKey: "state",
@@ -52,7 +61,10 @@ export const columns = [
             switch (state) {
                 case "not available":
                     return (
-                        <span className="text-red-500 truncate"> Not available </span>
+                        <span className="text-red-500 truncate">
+                            {" "}
+                            Not available{" "}
+                        </span>
                     );
                 case "available":
                     return <span className="text-green-600"> Available </span>;

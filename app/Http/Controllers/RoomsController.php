@@ -56,9 +56,11 @@ class RoomsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Room $rooms)
+    public function show(Room $room)
     {
-        //
+        return inertia('Rooms/Show', [
+            'room' => $room
+        ]);
     }
 
     /**

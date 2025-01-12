@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientsRequest;
 use App\Http\Requests\UpdateClientsRequest;
+use App\Http\Resources\ClientsResource;
 use App\Models\Clients;
 
 class ClientsController extends Controller
@@ -13,7 +14,19 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        //
+        $query = Clients::query();
+
+        $rooms = $query->paginate(10)->onEachSide(1);
+
+        // All the information is going to be available on the frontend.
+        // Do NOT pass sensitive information here. Because of Inertia
+
+        return inertia('Clients/Index', [
+            'rooms' => ClientsResource::collection($rooms),
+            'flash' => [
+                'success' => session('success')
+            ]
+        ]);
     }
 
     /**

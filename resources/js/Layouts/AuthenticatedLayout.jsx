@@ -1,4 +1,4 @@
-import { Link, usePage } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 import { SidebarProvider, SidebarTrigger } from "@/Components/ui/sidebar";
@@ -24,7 +24,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             {header}
                         </span>
                     </header>
-                    <div className="w-fit bg-white">{children}</div>
+                    <div className="w-full h-full bg-white">{children}</div>
                 </main>
             </SidebarProvider>
         </div>

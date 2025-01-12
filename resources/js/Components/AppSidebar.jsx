@@ -103,12 +103,9 @@ export function AppSidebar() {
                                                         "clients.index"
                                                     )}
                                                 >
-                                                    <SidebarMenuButton disabled>
+                                                    <SidebarMenuButton>
                                                         <UserRound />
                                                         <span>Clients</span>
-                                                        <Badge variant="outline">
-                                                            Coming soon
-                                                        </Badge>
                                                     </SidebarMenuButton>
                                                 </Link>
                                             </SidebarMenuSubItem>

@@ -48,9 +48,9 @@ export default function Edit({ auth, room }) {
         >
             <Head title="Rooms" />
 
-            <div className="border-t">
-                <div className="mx-auto max-w-7xl">
-                    <div className="overflow-hidden bg-white shadow-sm">
+            <div className="border-t h-full">
+                <div className="mx-auto max-w-7xl h-full">
+                    <div className="overflow-hidden bg-white shadow-sm h-full">
                         <div className="flex flex-col gap-8 p-6 text-gray-900">
                             <header>
                                 <h1 className="font-semibold text-2xl">
