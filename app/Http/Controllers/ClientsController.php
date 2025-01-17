@@ -16,13 +16,13 @@ class ClientsController extends Controller
     {
         $query = Clients::query();
 
-        $rooms = $query->paginate(10)->onEachSide(1);
+        $clients = $query->paginate(10)->onEachSide(1);
 
         // All the information is going to be available on the frontend.
         // Do NOT pass sensitive information here. Because of Inertia
 
         return inertia('Clients/Index', [
-            'rooms' => ClientsResource::collection($rooms),
+            'clients' => ClientsResource::collection($clients),
             'flash' => [
                 'success' => session('success')
             ]
@@ -72,8 +72,12 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clients $clients)
+    public function destroy(Clients $client)
     {
-        //
+        if($client->delete()) {
+            return to_route('clients.index')->with('success', 'Client was deleted succesfully!');
+        } else {
+            return redirect()->back()->with('error', 'There was an error...');
+        }
     }
 }

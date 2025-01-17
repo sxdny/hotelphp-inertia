@@ -17,7 +17,11 @@ class ClientsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'surname' => fake()->lastName(),
+            'email' => fake()->email(),
+            'phone_number' => fake()->phoneNumber(),
+            'reservation_id' => fake()->numberBetween(0,10)
         ];
     }
 }

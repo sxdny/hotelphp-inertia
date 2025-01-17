@@ -1,5 +1,6 @@
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { Link, router } from "@inertiajs/react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,19 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogClose,
+    DialogHeader,
+    DialogPortal,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 export const columns = [
     {
@@ -153,49 +167,72 @@ export const columns = [
         id: "actions",
         cell: ({ row }) => {
             const room = row.original;
+            const [open, setOpen] = useState(false);
 
             function handleDeleteRoom(id) {
-                if (
-                    window.confirm("Are you sure you want to delete this room?")
-                ) {
-                    // destroy the room
-                    router.delete(route("rooms.destroy", id));
-                } else {
-                    return;
-                }
+                router.delete(route("rooms.destroy", id));
+                setOpen(false)
             }
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open Menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() =>
-                                navigator.clipboard.writeText(room.id)
-                            }
-                        >
-                            Copy room ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <Link href={route("rooms.edit", room.id)}>
-                                Edit room
-                            </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            className="text-red-500"
-                            onClick={() => handleDeleteRoom(room.id)}
-                        >
-                            Delete room
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <Dialog open={open} onOpenChange={setOpen}>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open Menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuItem
+                                onClick={() => {
+                                    navigator.clipboard.writeText(room.id)
+                                    toast("Room id copied to your clipboard!")
+                                }
+                                    
+                                }
+                            >
+                                Copy room ID
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                <Link href={route("rooms.edit", room.id)}>
+                                    Edit room
+                                </Link>
+                            </DropdownMenuItem>
+
+                            <DialogTrigger>
+                                <DropdownMenuItem className="text-red-500">
+                                    Delete room
+                                </DropdownMenuItem>
+                            </DialogTrigger>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    <DialogPortal>
+                        <DialogContent>
+                            <DialogTitle>
+                                Are you sure you want to delete this room?
+                            </DialogTitle>
+                            <DialogDescription>
+                                This action cannot be undone. This will
+                                permanently delete the room of the database.
+                            </DialogDescription>
+                            <DialogFooter>
+                                <DialogClose asChild>
+                                    <Button>Close</Button>
+                                </DialogClose>
+                                <Button
+                                    variant="destructive"
+                                    onClick={() => handleDeleteRoom(room.id)}
+                                >
+                                    Delete this room
+                                </Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </DialogPortal>
+                </Dialog>
             );
         },
     },

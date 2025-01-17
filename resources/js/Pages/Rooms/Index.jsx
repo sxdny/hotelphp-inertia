@@ -24,7 +24,7 @@ export default function Index({ rooms, flash }) {
             }
         >
             <Head title="Rooms" />
-            <Toaster />
+            <Toaster richColors />
 
             <div>
                 <div className="mx-auto">
@@ -52,86 +52,6 @@ export default function Index({ rooms, flash }) {
                             <Pagination links={rooms.meta.links} />
 
                             <DataTable data={rooms.data} columns={columns} />
-
-                            {/* <Table>
-                                <TableCaption>
-                                    A list of your recent invoices.
-                                </TableCaption>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Description</TableHead>
-                                        <TableHead>State</TableHead>
-                                        <TableHead>Type</TableHead>
-                                        <TableHead>Capacity</TableHead>
-                                        <TableHead>Price</TableHead>
-                                        <TableHead className="text-right">
-                                            Actions
-                                        </TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {rooms.data.map((room) => {
-                                        return (
-                                            <TableRow key={room.id}>
-                                                <TableCell>
-                                                    {room.name}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {room.description}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {" "}
-                                                    {room.state
-                                                        .charAt(0)
-                                                        .toUpperCase() +
-                                                        room.state.slice(
-                                                            1
-                                                        )}{" "}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {" "}
-                                                    {room.type
-                                                        .charAt(0)
-                                                        .toUpperCase() +
-                                                        room.type.slice(1)}{" "}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {" "}
-                                                    {room.capacity}{" "}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {" "}
-                                                    {room.price}{" "}
-                                                </TableCell>
-                                                <TableCell className="flex items-center justify-center gap-2">
-                                                    <Button>
-                                                        <Link
-                                                            href={route(
-                                                                "rooms.edit",
-                                                                room.id
-                                                            )}
-                                                        >
-                                                            <Pencil />
-                                                        </Link>
-                                                    </Button>
-
-                                                    <Button
-                                                        variant="destructive"
-                                                        onClick={(e) =>
-                                                            handleDeleteButton(
-                                                                room.id
-                                                            )
-                                                        }
-                                                    >
-                                                        <Trash />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        );
-                                    })}
-                                </TableBody>
-                            </Table> */}
 
                             <Pagination links={rooms.meta.links} />
                         </div>

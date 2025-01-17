@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clients;
 use App\Models\User;
 use App\Models\Rooms;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,5 +27,7 @@ class DatabaseSeeder extends Seeder
         //         "password"=> "baba123",
         //     ]
         //     );
+
+        Clients::factory()->count(30)->create();
     }
 }
