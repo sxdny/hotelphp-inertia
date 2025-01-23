@@ -47,9 +47,9 @@ class RoomsController extends Controller
         
         // once the data is validated, we create the new room
         if(Room::create($data)) {
-            return redirect()->route('rooms.index')->with('success', 'The room was created succesfully!');
+            return to_route('rooms.index')->with('success', 'The room was created succesfully!');
         } else {
-            return back()->with('error','');
+            return back()->with('error','There was an error creating the room...');
         }
     }
 

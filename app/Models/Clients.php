@@ -13,8 +13,11 @@ class Clients extends Model
     protected $fillable = [
         'name',
         'surname',
+        'username',
+        'password',
         'phone_number',
         'email',
-        'reservation_id'
+        'reservation_id',
+        'img_url'
     ];
 }

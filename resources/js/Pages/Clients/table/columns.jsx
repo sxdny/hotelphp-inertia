@@ -37,7 +37,7 @@ export const columns = [
                     className="underline underline-offset-4"
                     href={route("clients.show", clientId)}
                 >
-                    {clientName + "" + clientSurname}
+                    {clientName + " " + clientSurname}
                 </Link>
             );
         },
@@ -90,7 +90,7 @@ export const columns = [
                                     
                                 }
                             >
-                                Copy room ID
+                                Copy client ID
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>

@@ -1,6 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Pagination from "@/Components/Pagination";
-import { Head, Link, router } from "@inertiajs/react";
+import { useEffect } from "react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { Toaster } from "sonner";
 import { toast } from "sonner";
 import { Button } from "@/Components/ui/button";
@@ -9,16 +10,25 @@ import { PlusIcon } from "lucide-react";
 import { DataTable } from "./table/data-table";
 import { columns } from "./table/columns";
 
-export default function Index({ clients, flash }) {
+export default function Index({ clients }) {
+
+    const { flash } = usePage().props
+
     // Displaying the flash messages
-    flash.success && toast.success("Room was deleted succesfully!");
-    flash.error && toast("There was an error my guy.");
+    useEffect(() => {
+        if (flash.success) {
+            toast.success(flash.success);
+        }
+        if (flash.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
 
     return (
         <AuthenticatedLayout
             header={<h2 className="leading-tight text-neutral-600">Clients</h2>}
         >
-            <Head title="Rooms" />
+            <Head title="Clients" />
             <Toaster richColors />
 
             <div>

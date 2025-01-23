@@ -17,8 +17,6 @@ import {
 import { useState } from "react";
 
 import { Input } from "@/Components/ui/input";
-import { Search } from "lucide-react";
-import { set } from "react-hook-form";
 
 export function DataTable({ data, columns }) {
     const [globalFilter, setGlobalFilter] = useState("");
