@@ -15,19 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
-            This is already created. No need to execute it again.
-        */
-        
-        // Rooms::factory()->count(30)->create();
-        // User::create(
-        //     [
-        //         "name"=> "Baba",
-        //         "email"=> "baba@gmail.com",
-        //         "password"=> "baba123",
-        //     ]
-        //     );
-
-        Clients::factory()->count(30)->create();
+        // User::create([
+        //     'name' => 'Sidney Silva',
+        //     'email' => 'sidneysbo@icloud.com',
+        //     'password' => bcrypt('sidney123'),
+        //     'role' => 'admin'
+        // ]);
+        User::create([
+            'name' => 'Usuario Normal',
+            'email' => 'usuarionormal@icloud.com',
+            'password' => bcrypt('usuarionormal123'),
+            'role' => 'user'
+        ]);
+        // Clients::factory()->count(30)->create();
     }
 }

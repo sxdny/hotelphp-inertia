@@ -58,13 +58,13 @@ const items = [
 export function AppSidebar() {
     const user = usePage().props.auth.user;
     return (
-        <Sidebar className="list-none">
+        <Sidebar>
             <SidebarHeader />
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupContent>
                         {items.map((item) => (
-                            <SidebarMenuItem key={item.title}>
+                            <SidebarMenuItem className="list-none" key={item.title}>
                                 <SidebarMenuButton asChild>
                                     <Link href={item.url}>
                                         <item.icon />
@@ -82,7 +82,7 @@ export function AppSidebar() {
                                     <CollapsibleTrigger asChild>
                                         <SidebarMenuButton>
                                             <Hotel />
-                                            <span> My hotel </span>
+                                            <span> Manage my hotel </span>
                                         </SidebarMenuButton>
                                     </CollapsibleTrigger>
                                     <CollapsibleContent>
@@ -112,14 +112,15 @@ export function AppSidebar() {
                                             <SidebarMenuSubItem>
                                                 <Link
                                                     href={route(
-                                                        "clients.index"
+                                                        "reservations.index"
                                                     )}
                                                 >
-                                                    <SidebarMenuButton disabled>
+                                                    <SidebarMenuButton>
                                                         <BookMarked />
                                                         <span>
                                                             Reservations
                                                         </span>
+                                                        
                                                     </SidebarMenuButton>
                                                 </Link>
                                             </SidebarMenuSubItem>

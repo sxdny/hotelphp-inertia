@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReservationsRequest;
 use App\Http\Requests\UpdateReservationsRequest;
+use App\Http\Resources\ReservationsResource;
 use App\Models\Reservations;
 
 class ReservationsController extends Controller
@@ -13,7 +14,19 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-        //
+        $query = Reservations::query();
+
+        $rooms = $query->paginate(10)->onEachSide(1);
+
+        // All the information is going to be available on the frontend.
+        // Do NOT pass sensitive information here. Because of Inertia
+
+        return inertia('Reservations/Index', [
+            'reservations' => ReservationsResource::collection($rooms),
+            'flash' => [
+                'success' => session('success')
+            ]
+        ]);
     }
 
     /**

@@ -4,22 +4,24 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// redirect from home to dashbord
-Route::redirect('/', '/dashboard');
+Route::get('/', fn() => Inertia::render('Home'))
+        ->name('home');
 
 // group all the routes inside the middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
         ->name('dashboard');
+    
 
     // Resources
-    Route::resource('clients', ClientsController::class);
-    Route::resource('rooms', RoomsController::class);
-    Route::resource('reservations', ReservationsController::class);
+    Route::resource('clients', ClientsController::class)->middleware(AdminMiddleware::class.':admin');
+    Route::resource('rooms', RoomsController::class)->middleware(AdminMiddleware::class.':admin');
+    Route::resource('reservations', ReservationsController::class)->middleware(AdminMiddleware::class.':admin');
 });
 
 Route::middleware('auth')->group(function () {

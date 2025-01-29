@@ -14,7 +14,6 @@ class RoomsController extends Controller
      */
     public function index()
     {
-
         $query = Room::query();
 
         $rooms = $query->paginate(10)->onEachSide(1);

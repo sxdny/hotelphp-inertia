@@ -1,16 +1,7 @@
-import { usePage } from "@inertiajs/react";
-import { useState } from "react";
-
 import { SidebarProvider, SidebarTrigger } from "@/Components/ui/sidebar";
 import { AppSidebar } from "@/Components/AppSidebar";
 
 export default function AuthenticatedLayout({ header, children }) {
-    const user = usePage().props.auth.user;
-    const { flash } = usePage().props;
-
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     return (
         <div className="min-h-screen bg-gray-100">
             <SidebarProvider>
