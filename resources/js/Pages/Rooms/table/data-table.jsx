@@ -70,7 +70,7 @@ export function DataTable({ data, columns }) {
                     <TableRow>
                         <TableCell
                             colSpan={columns.length}
-                            className="h-24 text-center"
+                            className="h-24 text-center dark:text-neutral-300"
                         >
                             No results.
                         </TableCell>

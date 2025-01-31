@@ -8,11 +8,11 @@ export default function Pagination({ links }) {
                 <Button
                     key={link.label}
                     asChild
-                    variant={!link.active ? "outline" : ""}
+                    variant={!link.active ? "secondary" : "secondary"}
                     className={
                         !link.url
-                            ? "text-neutral-400 !bg-neutral-100 cursor-not-allowed"
-                            : ""
+                            ? "text-neutral-400 dark:text-neutral-500 cursor-not-allowed"
+                            : "border border-neutral-300 dark:border-neutral-500"
                     }
                 >
                     <Link

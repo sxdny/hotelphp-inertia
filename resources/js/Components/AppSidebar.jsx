@@ -58,7 +58,7 @@ const items = [
 export function AppSidebar() {
     const user = usePage().props.auth.user;
     return (
-        <Sidebar>
+        <Sidebar className="dark:border-neutral-700">
             <SidebarHeader />
             <SidebarContent>
                 <SidebarGroup>
@@ -161,7 +161,7 @@ export function AppSidebar() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent
                                 side="top"
-                                className="w-[--radix-popper-anchor-width]"
+                                className="w-[--radix-popper-anchor-width] dark"
                             >
                                 <DropdownMenuItem asChild>
                                     <Link href={route("profile.edit")}>

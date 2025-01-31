@@ -29,22 +29,22 @@ export default function Create({ auth }) {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                <h2 className="text-gray-800 dark:text-neutral-400">
                     Clients
                 </h2>
             }
         >
             <Head title="Clients" />
 
-            <div className="border-t">
+            <div>
                 <div className="mx-auto max-w-7xl">
-                    <div className="overflow-hidden bg-white">
+                    <div className="overflow-hidden">
                         <div className="flex flex-col gap-8 p-6 text-gray-900">
                             <header>
-                                <h1 className="font-semibold text-2xl">
+                                <h1 className="font-semibold text-2xl dark:text-neutral-50">
                                     Create a new client
                                 </h1>
-                                <p className="text-neutral-600">
+                                <p className="text-neutral-600 dark:text-neutral-400">
                                     Fill the form to create a new client and
                                     store it into the database.
                                 </p>
@@ -165,9 +165,9 @@ export default function Create({ auth }) {
                                     )}
                                 </div>
 
-                                <hr className="my-4" />
+                                <hr className="my-4 border-neutral-800" />
 
-                                <p className="text-sm text-neutral-500">
+                                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
                                     The following fields are required to create
                                     the user account.
                                 </p>

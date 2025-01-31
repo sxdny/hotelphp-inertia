@@ -32,14 +32,14 @@ export default function Index({ reservations }) {
 
             <div>
                 <div className="mx-auto">
-                    <div className="overflow-hidden bg-white shadow-sm">
+                    <div className="overflow-hidden shadow-sm">
                         <div className="flex flex-col gap-8 p-6 text-gray-900">
                             <header className="flex items-center justify-between">
                                 <div>
-                                    <h1 className="font-semibold text-2xl">
+                                    <h1 className="font-semibold text-2xl dark:text-neutral-50">
                                         List of reservations
                                     </h1>
-                                    <p className="text-neutral-600">
+                                    <p className="text-neutral-600 dark:text-neutral-400">
                                         Here you can see all the reservations
                                         of your hotel.
                                     </p>

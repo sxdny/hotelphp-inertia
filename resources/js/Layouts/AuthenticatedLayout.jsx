@@ -3,19 +3,17 @@ import { AppSidebar } from "@/Components/AppSidebar";
 
 export default function AuthenticatedLayout({ header, children }) {
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen dark">
             <SidebarProvider>
                 <AppSidebar className="list-none"/>
-                <main className="flex flex-col bg-white w-screen">
-                    <header className="bg-white px-5 py-2 flex items-center gap-3">
-                        <div className="border-r pr-2">
-                            <SidebarTrigger />
+                <main className="flex flex-col w-screen">
+                    <header className="dark:bg-neutral-900 bg-white px-5 py-2 flex items-center gap-3">
+                        <div>
+                            <SidebarTrigger className="dark:text-neutral-50" />
                         </div>
-                        <span className="text-sm text-neutral-600">
-                            {header}
-                        </span>
+                        {header}
                     </header>
-                    <div className="w-full h-full bg-white">{children}</div>
+                    <div className="w-full h-full dark:bg-neutral-900 bg-white">{children}</div>
                 </main>
             </SidebarProvider>
         </div>

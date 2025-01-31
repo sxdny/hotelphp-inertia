@@ -30,11 +30,11 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-xl font-semibold text-neutral-900">
+                <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-200">
                     Account information
                 </h2>
 
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     Update your account's profile information and email address.
                 </p>
             </header>

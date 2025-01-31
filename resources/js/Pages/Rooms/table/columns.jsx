@@ -55,7 +55,7 @@ export const columns = [
         header: ({ column }) => {
             return (
                 <Button
-                    className="hover:bg-transparent px-0"
+                    className="hover:bg-transparent dark:hover:bg-transparent px-0"
                     variant="ghost"
                     onClick={() => column.toggleSorting()}
                 >
@@ -116,7 +116,7 @@ export const columns = [
         header: ({ column }) => {
             return (
                 <Button
-                    className="hover:bg-transparent px-0 text-right"
+                    className="hover:bg-transparent dark:hover:bg-transparent px-0 text-right"
                     variant="ghost"
                     onClick={() => column.toggleSorting()}
                 >
@@ -142,7 +142,7 @@ export const columns = [
         header: ({ column }) => {
             return (
                 <Button
-                    className="hover:bg-transparent px-0 text-right"
+                    className="hover:bg-transparent dark:hover:bg-transparent px-0 text-right"
                     variant="ghost"
                     onClick={() => column.toggleSorting()}
                 >

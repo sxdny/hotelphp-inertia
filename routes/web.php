@@ -9,8 +9,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', fn() => Inertia::render('Home'))
-        ->name('home');
+Route::get('/', fn() => Inertia::render('Welcome'))
+        ->name('welcome');
 
 // group all the routes inside the middleware
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('dashboard');
     
 
-    // Resources
+    // Admin routes
     Route::resource('clients', ClientsController::class)->middleware(AdminMiddleware::class.':admin');
     Route::resource('rooms', RoomsController::class)->middleware(AdminMiddleware::class.':admin');
     Route::resource('reservations', ReservationsController::class)->middleware(AdminMiddleware::class.':admin');
